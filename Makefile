@@ -1,7 +1,7 @@
 .PHONY: code-gen
 code-gen:
 	rm -rf redfish_client
-	openapi-generator generate -i ./spec/openapi.yaml -g go -o client/
+	openapi-generator generate -i ./spec/openapi.yaml -g go --package-name "client" -o client/
 
 .PHONY: deps
 deps:

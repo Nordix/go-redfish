@@ -1,4 +1,4 @@
-# Go API client for openapi
+# Go API client for client
 
 Partial Redfish OAPI specification for a limited client
 
@@ -23,7 +23,7 @@ go get github.com/antihax/optional
 Put the package under your project folder and add the following in import:
 
 ```golang
-import "./openapi"
+import "./client"
 ```
 
 ## Documentation for API Endpoints
