@@ -1,0 +1,458 @@
+openapi: 3.0.2
+info:
+  title: Redfish OAPI specification
+  description: 'Partial Redfish OAPI specification for a limited client'
+  version: 0.0.1
+components:
+  schemas:
+    BootSource:
+      type: string
+      enum:
+      - None
+      - Pxe
+      - Floppy
+      - Cd
+      - Usb
+      - Hdd
+      - BiosSetup
+      - Utilities
+      - Diags
+      - UefiShell
+      - UefiTarget
+      - SDCard
+      - UefiHttp
+      - RemoteDrive
+      - UefiBootNext
+    BootSourceOverrideEnabled:
+      type: string
+      enum:
+      - Once
+      - Continuous
+    State:
+      type: string
+      enum:
+      - Enabled
+      - Disabled
+      - StandbyOffline
+      - StandbySpare
+      - InTest
+      - Starting
+      - Absent
+      - UnavailableOffline
+      - Deferring
+      - Quiesced
+      - Updating
+    Health:
+      type: string
+      enum:
+      - OK
+      - Warning
+      - Critical
+    PowerState:
+      type: string
+      enum:
+      - On
+      - Off
+      - PoweringOn
+      - PoweringOff
+    ResetType:
+      type: string
+      enum:
+      - "On"
+      - ForceOff
+      - GracefulShutdown
+      - GracefulRestart
+      - ForceRestart
+      - Nmi
+      - ForceOn
+      - PushPowerButton
+      - PowerCycle
+    IndicatorLED:
+      type: string
+      enum:
+      - Unknown
+      - Lit
+      - Blinking
+      - "Off"
+    context:
+      description: The OData description of a payload.
+      format: uri-reference
+      readOnly: true
+      type: string
+    count:
+      description: The number of items in a collection.
+      readOnly: true
+      type: integer
+    name:
+      description: The name of the resource.
+      readOnly: true
+      type: string
+    etag:
+      description: The current ETag of the resource.
+      readOnly: true
+      type: string
+    id:
+      description: The name of the resource.
+      readOnly: true
+      type: string
+    odataId:
+      description: The unique identifier for a resource.
+      format: uri-reference
+      readOnly: true
+      type: string
+    idRef:
+      additionalProperties: false
+      description: A reference to a resource.
+      properties:
+        '@odata.id':
+          $ref: '#/components/schemas/odataId'
+      type: object
+    nextLink:
+      description: The URI to the resource containing the next set of partial members.
+      format: uri-reference
+      readOnly: true
+      type: string
+    rtype:
+      description: The type of a resource.
+      readOnly: true
+      type: string
+    UUID:
+      pattern: ([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})
+      type: string
+    Message:
+      additionalProperties: false
+      properties:
+        Message:
+          readOnly: true
+          type: string
+        MessageArgs:
+          items:
+            type: string
+          readOnly: true
+          type: array
+        MessageId:
+          readOnly: true
+          type: string
+        RelatedProperties:
+          items:
+            type: string
+          readOnly: true
+          type: array
+        Resolution:
+          readOnly: true
+          type: string
+        Severity:
+          readOnly: true
+          type: string
+      required:
+      - MessageId
+      type: object
+    RedfishError:
+      description: Contains an error payload from a Redfish Service.
+      properties:
+        error:
+          properties:
+            '@Message.ExtendedInfo':
+              items:
+                $ref: '#/components/schemas/Message'
+              type: array
+            code:
+              readOnly: true
+              type: string
+            message:
+              readOnly: true
+              type: string
+          required:
+          - code
+          - message
+          type: object
+      required:
+      - error
+      type: object
+    Root:
+      type: object
+      additionalProperties: false
+      description: Root redfish path.
+      required:
+      - '@odata.id'
+      - '@odata.type'
+      - 'Name'
+      properties:
+        'Id':
+          $ref: '#/components/schemas/id'
+        'Name':
+          $ref: '#/components/schemas/name'
+        'RedfishVersion':
+          type: string
+          description: redfish version
+        'UUID':
+          $ref: '#/components/schemas/UUID'
+        '@odata.type':
+          $ref: '#/components/schemas/rtype'
+        '@odata.id':
+          $ref: '#/components/schemas/odataId'
+        '@Redfish.Copyright':
+          type: string
+          description: redfish copyright
+        'Systems':
+          $ref: '#/components/schemas/idRef'
+        'Managers':
+          $ref: '#/components/schemas/idRef'
+    Collection:
+      type: object
+      additionalProperties: false
+      description: A Collection of ComputerSystem resource instances.
+      required:
+      - 'Members'
+      - '@odata.id'
+      - '@odata.type'
+      - 'Name'
+      properties:
+        '@odata.context':
+          type: string
+          description: context
+        '@odata.etag':
+          type: string
+          description: etag
+        '@odata.id':
+          type: string
+          description: id
+        '@odata.type':
+          type: string
+          description: type
+        'Description':
+          type: string
+          description: "description"
+          #nullable: true
+          readOnly: true
+        'Members':
+          description: Contains the members of this collection.
+          items:
+            $ref: '#/components/schemas/idRef'
+          readOnly: true
+          type: array
+        'Members@odata.count':
+          $ref: '#/components/schemas/count'
+        'Members@odata.nextLink':
+          $ref: '#/components/schemas/nextLink'
+        'Name':
+          $ref: '#/components/schemas/name'
+          readOnly: true
+    Status:
+      type: object
+      additionalProperties: false
+      properties:
+        Health:
+          $ref: '#/components/schemas/Health'
+          #nullable: true
+          readOnly: true
+        HealthRollup:
+          $ref: '#/components/schemas/Health'
+          #nullable: true
+          readOnly: true
+        State:
+          $ref: '#/components/schemas/State'
+          #nullable: true
+          readOnly: true
+    Boot:
+      type: object
+      additionalProperties: false
+      properties:
+        BootSourceOverrideEnabled:
+          $ref: '#/components/schemas/BootSourceOverrideEnabled'
+        BootSourceOverrideTarget:
+          $ref: '#/components/schemas/BootSource'
+        BootSourceOverrideTarget@Redfish.AllowableValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/BootSource'
+    ProcessorSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        Count:
+          minimum: 0
+          #nullable: true
+          readOnly: true
+          type: integer
+        Status:
+          $ref: '#/components/schemas/Status'
+    MemorySummary:
+      type: object
+      additionalProperties: false
+      properties:
+        TotalSystemMemoryGiB:
+          minimum: 0
+          #nullable: true
+          readOnly: true
+          type: number
+        TotalSystemPersistentMemoryGiB:
+          minimum: 0
+          #nullable: true
+          readOnly: true
+          type: number
+        Status:
+          $ref: '#/components/schemas/Status'
+    Links:
+      type: object
+      additionalProperties: false
+      properties:
+        Chassis:
+          type: array
+          items:
+            $ref: '#/components/schemas/idRef'
+        ManagedBy:
+          type: array
+          items:
+            $ref: '#/components/schemas/idRef'
+    ComputerSystemReset:
+      type: object
+      additionalProperties: false
+      properties:
+        target:
+          $ref: '#/components/schemas/odataId'
+        ResetType@Redfish.AllowableValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResetType'
+    ResetRequestBody:
+      additionalProperties: false
+      properties:
+        ResetType:
+          $ref: '#/components/schemas/ResetType'
+      type: object
+    ComputerSystem:
+      type: object
+      additionalProperties: false
+      description: Root redfish path.
+      required:
+      - '@odata.id'
+      - '@odata.type'
+      - 'Name'
+      properties:
+        'Id':
+          $ref: '#/components/schemas/id'
+        'Name':
+          $ref: '#/components/schemas/name'
+        'RedfishVersion':
+          type: string
+          description: redfish version
+        'UUID':
+          $ref: '#/components/schemas/UUID'
+        '@odata.type':
+          $ref: '#/components/schemas/rtype'
+        '@odata.id':
+          $ref: '#/components/schemas/odataId'
+        '@odata.context':
+          $ref: '#/components/schemas/context'
+        '@Redfish.Copyright':
+          type: string
+          description: redfish copyright
+        'Bios':
+          $ref: '#/components/schemas/idRef'
+        'Processors':
+          $ref: '#/components/schemas/idRef'
+        'Memory':
+          $ref: '#/components/schemas/idRef'
+        'EthernetInterfaces':
+          $ref: '#/components/schemas/idRef'
+        'SimpleStorage':
+          $ref: '#/components/schemas/idRef'
+        'PowerState':
+          $ref: '#/components/schemas/PowerState'
+        'Status':
+          $ref: '#/components/schemas/Status'
+        'Boot':
+          $ref: '#/components/schemas/Boot'
+        'ProcessorSummary':
+          $ref: '#/components/schemas/ProcessorSummary'
+        'MemorySummary':
+          $ref: '#/components/schemas/MemorySummary'
+        'IndicatorLED':
+          $ref: '#/components/schemas/IndicatorLED'
+        'Links':
+          $ref: '#/components/schemas/Links'
+        'Actions':
+          type: object
+          properties:
+            "#ComputerSystem.Reset":
+              $ref: '#/components/schemas/ComputerSystemReset'
+paths:
+  /redfish/v1:
+    get:
+      operationId: get_root
+      responses:
+        '200':
+          description: Get redfish root
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Root'
+  /redfish/v1/Systems:
+    get:
+      operationId: list_systems
+      responses:
+        '200':
+          description: Computer Systems List
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Collection'
+  /redfish/v1/Systems/{systemId}:
+    get:
+      operationId: get_system
+      responses:
+        '200':
+          description: Computer Systems List
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ComputerSystem'
+    parameters:
+    - name: systemId
+      in: path
+      description: ID of resource
+      required: true
+      schema:
+        type: string
+
+  /redfish/v1/Managers:
+    get:
+      operationId: list_managers
+      responses:
+        '200':
+          description: Managers List
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Collection'
+  /redfish/v1/Systems/{ComputerSystemId}/Actions/ComputerSystem.Reset:
+    parameters:
+    - in: path
+      name: ComputerSystemId
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: reset_system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetRequestBody'
+        required: true
+      responses:
+        '200':
+          description: Success with response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+        '204':
+          description: Success, but no response data
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
