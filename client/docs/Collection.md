@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **OdataEtag** | **string** | etag | [optional] 
 **OdataId** | **string** | id | 
 **OdataType** | **string** | type | 
-**Description** | **string** | description | [optional] 
+**Description** | Pointer to **string** | description | [optional] 
 **Members** | [**[]IdRef**](idRef.md) | Contains the members of this collection. | 
 **MembersodataCount** | **int32** | The number of items in a collection. | [optional] 
 **MembersodataNextLink** | **string** | The URI to the resource containing the next set of partial members. | [optional] 

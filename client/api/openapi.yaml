@@ -45,16 +45,44 @@ paths:
               schema:
                 $ref: '#/components/schemas/ComputerSystem'
           description: Computer Systems List
-  /redfish/v1/Managers:
-    get:
-      operationId: list_managers
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+    patch:
+      operationId: set_system
+      parameters:
+      - description: ID of resource
+        explode: false
+        in: path
+        name: systemId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComputerSystem'
+        required: true
       responses:
         200:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Collection'
-          description: Managers List
+                $ref: '#/components/schemas/ComputerSystem'
+          description: ComputerSystem Properties set successfully
+        204:
+          description: Success, but no response data
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
   /redfish/v1/Systems/{ComputerSystemId}/Actions/ComputerSystem.Reset:
     post:
       operationId: reset_system
@@ -81,6 +109,178 @@ paths:
           description: Success with response
         204:
           description: Success, but no response data
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+  /redfish/v1/Managers:
+    get:
+      operationId: list_managers
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+          description: Managers List
+  /redfish/v1/Managers/{managerId}:
+    get:
+      operationId: get_manager
+      parameters:
+      - description: ID of resource
+        explode: false
+        in: path
+        name: managerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manager'
+          description: Get Manager
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+  /redfish/v1/Managers/{managerId}/VirtualMedia:
+    get:
+      operationId: list_manager_virtual_media
+      parameters:
+      - description: ID of resource
+        explode: false
+        in: path
+        name: managerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+          description: Get a list of Manager's virtual media
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+  /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}:
+    get:
+      operationId: get_manager_virtual_media
+      parameters:
+      - description: ID of resource
+        explode: false
+        in: path
+        name: managerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of resource
+        explode: false
+        in: path
+        name: virtualMediaId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualMedia'
+          description: Get a list of Manager's virtual media
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+  /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.InsertMedia:
+    post:
+      operationId: insert_virtual_media
+      parameters:
+      - description: ID of resource
+        explode: false
+        in: path
+        name: managerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of resource
+        explode: false
+        in: path
+        name: virtualMediaId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InsertMediaRequestBody'
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Insert virtual media
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+  /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.EjectMedia:
+    post:
+      operationId: ejct_virtual_media
+      parameters:
+      - description: ID of resource
+        explode: false
+        in: path
+        name: managerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of resource
+        explode: false
+        in: path
+        name: virtualMediaId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Insert virtual media
         default:
           content:
             application/json:
@@ -157,6 +357,38 @@ components:
       - Lit
       - Blinking
       - Off
+      type: string
+    ManagerType:
+      enum:
+      - ManagementController
+      - EnclosureManager
+      - BMC
+      - RackManager
+      - AuxiliaryController
+      - Service
+      type: string
+    ConnectedVia:
+      enum:
+      - NotConnected
+      - URI
+      - Applet
+      - Oem
+      type: string
+    TransferMethod:
+      enum:
+      - Stream
+      - Upload
+      type: string
+    TransferProtocolType:
+      enum:
+      - CIFS
+      - FTP
+      - SFTP
+      - HTTP
+      - HTTPS
+      - NFS
+      - SCP
+      - TFTP
       type: string
     context:
       description: The OData description of a payload.
@@ -361,6 +593,7 @@ components:
           type: string
         Description:
           description: description
+          nullable: true
           readOnly: true
           type: string
         Members:
@@ -424,6 +657,7 @@ components:
       properties:
         Count:
           minimum: 0
+          nullable: true
           readOnly: true
           type: integer
         Status:
@@ -438,16 +672,18 @@ components:
       properties:
         TotalSystemMemoryGiB:
           minimum: 0
+          nullable: true
           readOnly: true
           type: number
         TotalSystemPersistentMemoryGiB:
           minimum: 0
+          nullable: true
           readOnly: true
           type: number
         Status:
           $ref: '#/components/schemas/Status'
       type: object
-    Links:
+    SystemLinks:
       additionalProperties: false
       example:
         Chassis:
@@ -462,6 +698,39 @@ components:
             $ref: '#/components/schemas/idRef'
           type: array
         ManagedBy:
+          items:
+            $ref: '#/components/schemas/idRef'
+          type: array
+      type: object
+    ManagerLinks:
+      additionalProperties: false
+      example:
+        ManagerForServers:
+        - '@odata.id': '@odata.id'
+        - '@odata.id': '@odata.id'
+        ManagerForSwitches:
+        - '@odata.id': '@odata.id'
+        - '@odata.id': '@odata.id'
+        ManagerForChassis:
+        - '@odata.id': '@odata.id'
+        - '@odata.id': '@odata.id'
+        ManagerInChassis:
+        - '@odata.id': '@odata.id'
+        - '@odata.id': '@odata.id'
+      properties:
+        ManagerForServers:
+          items:
+            $ref: '#/components/schemas/idRef'
+          type: array
+        ManagerForChassis:
+          items:
+            $ref: '#/components/schemas/idRef'
+          type: array
+        ManagerForSwitches:
+          items:
+            $ref: '#/components/schemas/idRef'
+          type: array
+        ManagerInChassis:
           items:
             $ref: '#/components/schemas/idRef'
           type: array
@@ -593,13 +862,247 @@ components:
         IndicatorLED:
           $ref: '#/components/schemas/IndicatorLED'
         Links:
-          $ref: '#/components/schemas/Links'
+          $ref: '#/components/schemas/SystemLinks'
         Actions:
           $ref: '#/components/schemas/ComputerSystem_Actions'
       required:
       - '@odata.id'
       - '@odata.type'
       - Name
+      type: object
+    Manager:
+      additionalProperties: false
+      description: Redfish manager resource.
+      example:
+        Status: {}
+        Description: Description
+        DateTimeLocalOffset: DateTimeLocalOffset
+        ServiceEntryPointUUID: ServiceEntryPointUUID
+        '@odata.type': '@odata.type'
+        '@odata.context': '@odata.context'
+        DateTime: 2000-01-23T04:56:07.000+00:00
+        FirmwareVersion: FirmwareVersion
+        Name: Name
+        '@odata.id': '@odata.id'
+        VirtualMedia:
+          '@odata.id': '@odata.id'
+        Model: Model
+        Links:
+          ManagerForServers:
+          - '@odata.id': '@odata.id'
+          - '@odata.id': '@odata.id'
+          ManagerForSwitches:
+          - '@odata.id': '@odata.id'
+          - '@odata.id': '@odata.id'
+          ManagerForChassis:
+          - '@odata.id': '@odata.id'
+          - '@odata.id': '@odata.id'
+          ManagerInChassis:
+          - '@odata.id': '@odata.id'
+          - '@odata.id': '@odata.id'
+        Id: Id
+        UUID: UUID
+        '@Redfish.Copyright': '@Redfish.Copyright'
+        EthernetInterfaces:
+          '@odata.id': '@odata.id'
+      properties:
+        Id:
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        Name:
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        UUID:
+          pattern: ([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})
+          type: string
+        ServiceEntryPointUUID:
+          pattern: ([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})
+          type: string
+        '@odata.type':
+          description: The type of a resource.
+          readOnly: true
+          type: string
+        '@odata.id':
+          description: The unique identifier for a resource.
+          format: uri-reference
+          readOnly: true
+          type: string
+        '@odata.context':
+          description: The OData description of a payload.
+          format: uri-reference
+          readOnly: true
+          type: string
+        '@Redfish.Copyright':
+          description: redfish copyright
+          type: string
+        Model:
+          nullable: true
+          readOnly: true
+          type: string
+        ManagerType:
+          $ref: '#/components/schemas/ManagerType'
+        Status:
+          $ref: '#/components/schemas/Status'
+        DateTime:
+          format: date-time
+          nullable: true
+          readOnly: false
+          type: string
+        DateTimeLocalOffset:
+          description: 'The time offset from UTC that the DateTime property is set
+            to in format: +06:00 .'
+          nullable: true
+          pattern: ([-+][0-1][0-9]:[0-5][0-9])
+          readOnly: false
+          type: string
+        Description:
+          description: description
+          nullable: true
+          readOnly: true
+          type: string
+        EthernetInterfaces:
+          $ref: '#/components/schemas/idRef'
+        FirmwareVersion:
+          nullable: true
+          readOnly: true
+          type: string
+        Links:
+          $ref: '#/components/schemas/ManagerLinks'
+        PowerState:
+          $ref: '#/components/schemas/PowerState'
+        VirtualMedia:
+          $ref: '#/components/schemas/idRef'
+      required:
+      - '@odata.id'
+      - '@odata.type'
+      - Name
+      type: object
+    VirtualMedia:
+      additionalProperties: false
+      description: Redfish virtual media resource for manager.
+      example:
+        Description: Description
+        UserName: UserName
+        Actions:
+          '#VirtualMedia.InsertMedia':
+            target: target
+          '#VirtualMedia.EjectMedia':
+            target: target
+        '@odata.type': '@odata.type'
+        '@odata.context': '@odata.context'
+        Image: Image
+        MediaTypes:
+        - MediaTypes
+        - MediaTypes
+        Name: Name
+        ImageName: ImageName
+        '@odata.id': '@odata.id'
+        WriteProtected: true
+        Id: Id
+        '@Redfish.Copyright': '@Redfish.Copyright'
+        Inserted: true
+        Password: Password
+      properties:
+        Id:
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        Name:
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        '@odata.type':
+          description: The type of a resource.
+          readOnly: true
+          type: string
+        '@odata.id':
+          description: The unique identifier for a resource.
+          format: uri-reference
+          readOnly: true
+          type: string
+        '@odata.context':
+          description: The OData description of a payload.
+          format: uri-reference
+          readOnly: true
+          type: string
+        '@Redfish.Copyright':
+          description: redfish copyright
+          type: string
+        Description:
+          description: description
+          nullable: true
+          readOnly: true
+          type: string
+        Image:
+          format: uri-reference
+          nullable: true
+          readOnly: false
+          type: string
+        ImageName:
+          nullable: true
+          readOnly: true
+          type: string
+        Inserted:
+          nullable: true
+          readOnly: false
+          type: boolean
+        ConnectedVia:
+          $ref: '#/components/schemas/ConnectedVia'
+        MediaTypes:
+          items:
+            type: string
+          readOnly: true
+          type: array
+        WriteProtected:
+          nullable: true
+          readOnly: false
+          type: boolean
+        UserName:
+          nullable: true
+          readOnly: false
+          type: string
+        Password:
+          nullable: true
+          readOnly: false
+          type: string
+        TransferMethod:
+          $ref: '#/components/schemas/TransferMethod'
+        TransferProtocolType:
+          $ref: '#/components/schemas/TransferProtocolType'
+        Actions:
+          $ref: '#/components/schemas/VirtualMedia_Actions'
+      required:
+      - '@odata.id'
+      - '@odata.type'
+      - Name
+      type: object
+    InsertMediaRequestBody:
+      additionalProperties: false
+      example:
+        UserName: UserName
+        WriteProtected: true
+        Image: Image
+        Inserted: true
+        Password: Password
+      properties:
+        Image:
+          type: string
+        Inserted:
+          type: boolean
+        Password:
+          type: string
+        TransferMethod:
+          $ref: '#/components/schemas/TransferMethod'
+        TransferProtocolType:
+          $ref: '#/components/schemas/TransferProtocolType'
+        UserName:
+          type: string
+        WriteProtected:
+          type: boolean
+      required:
+      - Image
       type: object
     RedfishError_error:
       example:
@@ -650,3 +1153,23 @@ components:
       properties:
         '#ComputerSystem.Reset':
           $ref: '#/components/schemas/ComputerSystemReset'
+    VirtualMedia_Actions_VirtualMedia_EjectMedia:
+      example:
+        target: target
+      properties:
+        target:
+          description: The unique identifier for a resource.
+          format: uri-reference
+          readOnly: true
+          type: string
+    VirtualMedia_Actions:
+      example:
+        '#VirtualMedia.InsertMedia':
+          target: target
+        '#VirtualMedia.EjectMedia':
+          target: target
+      properties:
+        '#VirtualMedia.EjectMedia':
+          $ref: '#/components/schemas/VirtualMedia_Actions_VirtualMedia_EjectMedia'
+        '#VirtualMedia.InsertMedia':
+          $ref: '#/components/schemas/VirtualMedia_Actions_VirtualMedia_EjectMedia'

@@ -9,7 +9,7 @@
 
 package client
 
-type ProcessorSummary struct {
-	Count *int32 `json:"Count,omitempty"`
-	Status Status `json:"Status,omitempty"`
+type VirtualMediaActionsVirtualMediaEjectMedia struct {
+	// The unique identifier for a resource.
+	Target string `json:"target,omitempty"`
 }

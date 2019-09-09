@@ -9,7 +9,7 @@
 
 package client
 
-type Links struct {
+type SystemLinks struct {
 	Chassis []IdRef `json:"Chassis,omitempty"`
 	ManagedBy []IdRef `json:"ManagedBy,omitempty"`
 }

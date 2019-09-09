@@ -8,8 +8,12 @@
  */
 
 package client
+type ConnectedVia string
 
-type ProcessorSummary struct {
-	Count *int32 `json:"Count,omitempty"`
-	Status Status `json:"Status,omitempty"`
-}
+// List of ConnectedVia
+const (
+	NOT_CONNECTED ConnectedVia = "NotConnected"
+	URI ConnectedVia = "URI"
+	APPLET ConnectedVia = "Applet"
+	OEM ConnectedVia = "Oem"
+)

@@ -20,7 +20,7 @@ type Collection struct {
 	// type
 	OdataType string `json:"@odata.type"`
 	// description
-	Description string `json:"Description,omitempty"`
+	Description *string `json:"Description,omitempty"`
 	// Contains the members of this collection.
 	Members []IdRef `json:"Members"`
 	// The number of items in a collection.

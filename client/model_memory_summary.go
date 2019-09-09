@@ -10,7 +10,7 @@
 package client
 
 type MemorySummary struct {
-	TotalSystemMemoryGiB float32 `json:"TotalSystemMemoryGiB,omitempty"`
-	TotalSystemPersistentMemoryGiB float32 `json:"TotalSystemPersistentMemoryGiB,omitempty"`
+	TotalSystemMemoryGiB *float32 `json:"TotalSystemMemoryGiB,omitempty"`
+	TotalSystemPersistentMemoryGiB *float32 `json:"TotalSystemPersistentMemoryGiB,omitempty"`
 	Status Status `json:"Status,omitempty"`
 }

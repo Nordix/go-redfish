@@ -8,8 +8,10 @@
  */
 
 package client
+type TransferMethod string
 
-type ProcessorSummary struct {
-	Count *int32 `json:"Count,omitempty"`
-	Status Status `json:"Status,omitempty"`
-}
+// List of TransferMethod
+const (
+	STREAM TransferMethod = "Stream"
+	UPLOAD TransferMethod = "Upload"
+)

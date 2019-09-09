@@ -8,16 +8,18 @@
  */
 
 package client
+import (
+	"time"
+)
 
-// Root redfish path.
-type ComputerSystem struct {
+// Redfish manager resource.
+type Manager struct {
 	// The name of the resource.
 	Id string `json:"Id,omitempty"`
 	// The name of the resource.
 	Name string `json:"Name"`
-	// redfish version
-	RedfishVersion string `json:"RedfishVersion,omitempty"`
 	UUID string `json:"UUID,omitempty"`
+	ServiceEntryPointUUID string `json:"ServiceEntryPointUUID,omitempty"`
 	// The type of a resource.
 	OdataType string `json:"@odata.type"`
 	// The unique identifier for a resource.
@@ -26,17 +28,17 @@ type ComputerSystem struct {
 	OdataContext string `json:"@odata.context,omitempty"`
 	// redfish copyright
 	RedfishCopyright string `json:"@Redfish.Copyright,omitempty"`
-	Bios IdRef `json:"Bios,omitempty"`
-	Processors IdRef `json:"Processors,omitempty"`
-	Memory IdRef `json:"Memory,omitempty"`
-	EthernetInterfaces IdRef `json:"EthernetInterfaces,omitempty"`
-	SimpleStorage IdRef `json:"SimpleStorage,omitempty"`
-	PowerState PowerState `json:"PowerState,omitempty"`
+	Model *string `json:"Model,omitempty"`
+	ManagerType ManagerType `json:"ManagerType,omitempty"`
 	Status Status `json:"Status,omitempty"`
-	Boot Boot `json:"Boot,omitempty"`
-	ProcessorSummary ProcessorSummary `json:"ProcessorSummary,omitempty"`
-	MemorySummary MemorySummary `json:"MemorySummary,omitempty"`
-	IndicatorLED IndicatorLed `json:"IndicatorLED,omitempty"`
-	Links SystemLinks `json:"Links,omitempty"`
-	Actions ComputerSystemActions `json:"Actions,omitempty"`
+	DateTime *time.Time `json:"DateTime,omitempty"`
+	// The time offset from UTC that the DateTime property is set to in format: +06:00 .
+	DateTimeLocalOffset *string `json:"DateTimeLocalOffset,omitempty"`
+	// description
+	Description *string `json:"Description,omitempty"`
+	EthernetInterfaces IdRef `json:"EthernetInterfaces,omitempty"`
+	FirmwareVersion *string `json:"FirmwareVersion,omitempty"`
+	Links ManagerLinks `json:"Links,omitempty"`
+	PowerState PowerState `json:"PowerState,omitempty"`
+	VirtualMedia IdRef `json:"VirtualMedia,omitempty"`
 }
