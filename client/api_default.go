@@ -33,7 +33,7 @@ DefaultApiService
  * @param body
 @return RedfishError
 */
-func (a *DefaultApiService) EjctVirtualMedia(ctx _context.Context, managerId string, virtualMediaId string, body map[string]interface{}) (RedfishError, *_nethttp.Response, error) {
+func (a *DefaultApiService) EjectVirtualMedia(ctx _context.Context, managerId string, virtualMediaId string, body map[string]interface{}) (RedfishError, *_nethttp.Response, error) {
 	var (
 		localVarHttpMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}

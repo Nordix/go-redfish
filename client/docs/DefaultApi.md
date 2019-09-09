@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**EjctVirtualMedia**](DefaultApi.md#EjctVirtualMedia) | **Post** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.EjectMedia | 
+[**EjectVirtualMedia**](DefaultApi.md#EjectVirtualMedia) | **Post** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.EjectMedia | 
 [**GetManager**](DefaultApi.md#GetManager) | **Get** /redfish/v1/Managers/{managerId} | 
 [**GetManagerVirtualMedia**](DefaultApi.md#GetManagerVirtualMedia) | **Get** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId} | 
 [**GetRoot**](DefaultApi.md#GetRoot) | **Get** /redfish/v1 | 
@@ -18,9 +18,9 @@ Method | HTTP request | Description
 
 
 
-## EjctVirtualMedia
+## EjectVirtualMedia
 
-> RedfishError EjctVirtualMedia(ctx, managerId, virtualMediaId, body)
+> RedfishError EjectVirtualMedia(ctx, managerId, virtualMediaId, body)
 
 
 ### Required Parameters

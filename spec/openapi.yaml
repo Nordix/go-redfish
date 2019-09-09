@@ -599,6 +599,10 @@ components:
       required:
       - Image
       type: object
+    EjectMediaRequestBody:
+      additionalProperties: false
+      properties: {}
+      type: object
 paths:
   /redfish/v1:
     get:
@@ -821,13 +825,12 @@ paths:
         type: string
   /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.EjectMedia:
     post:
-      operationId: ejct_virtual_media
+      operationId: eject_virtual_media
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties: {}
+              $ref: '#/components/schemas/EjectMediaRequestBody'
         required: true
       responses:
         '200':

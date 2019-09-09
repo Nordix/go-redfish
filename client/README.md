@@ -32,7 +32,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**EjctVirtualMedia**](docs/DefaultApi.md#ejctvirtualmedia) | **Post** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.EjectMedia | 
+*DefaultApi* | [**EjectVirtualMedia**](docs/DefaultApi.md#ejectvirtualmedia) | **Post** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.EjectMedia | 
 *DefaultApi* | [**GetManager**](docs/DefaultApi.md#getmanager) | **Get** /redfish/v1/Managers/{managerId} | 
 *DefaultApi* | [**GetManagerVirtualMedia**](docs/DefaultApi.md#getmanagervirtualmedia) | **Get** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId} | 
 *DefaultApi* | [**GetRoot**](docs/DefaultApi.md#getroot) | **Get** /redfish/v1 | 

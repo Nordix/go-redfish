@@ -249,7 +249,7 @@ paths:
           description: Error condition
   /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.EjectMedia:
     post:
-      operationId: ejct_virtual_media
+      operationId: eject_virtual_media
       parameters:
       - description: ID of resource
         explode: false
@@ -271,8 +271,7 @@ paths:
         content:
           application/json:
             schema:
-              properties: {}
-              type: object
+              $ref: '#/components/schemas/EjectMediaRequestBody'
         required: true
       responses:
         200:
@@ -1103,6 +1102,10 @@ components:
           type: boolean
       required:
       - Image
+      type: object
+    EjectMediaRequestBody:
+      additionalProperties: false
+      properties: {}
       type: object
     RedfishError_error:
       example:
