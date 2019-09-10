@@ -25,7 +25,7 @@ cfg := &redfish.Configuration{
     UserAgent:     "go-redfish/client",
   }
 
-redfishApi := rf_client.NewAPIClient(cfg).DefaultApi
+redfishApi := redfish.NewAPIClient(cfg).DefaultApi
 ```
 
 Use `redfishApi` to interact with redfish server. This object contains get, set and list functions for different redfish resources. There are loose validations on the client side for the required paramaters of a certain API. In case of any error e.g. missing a required parameter; then server will generate the error. To see the available actions for API endpoints see [Endpoint Reference](https://github.com/nordix-airship/go-redfish/tree/master/client#documentation-for-api-endpoints) and [Model Definitions](https://github.com/nordix-airship/go-redfish/tree/master/client#documentation-for-models). See following examples for different operations.
@@ -52,14 +52,14 @@ system, _, _ := redfishApi.GetSystem(context.Background(), system_id)
 
 ```go
 system_id := "dd9fd064-263b-469c-91d4-d45f341fe2c5"
-systemReq := rf_client.ComputerSystem{ResetType: "ForceRestart"}
+systemReq := redfish.ComputerSystem{ResetType: "ForceRestart"}
 reset_resp, _, _ = redfishApi.ResetSystem(context.Background(), system_id, reset_type)
 ```
 - *Insert VirtualMedia for manager*
 
 ```go
 manager_id := "58893887-8974-2487-2389-841168418919"
-insertReq := rf_client.InsertMediaRequestBody{}
+insertReq := redfish.InsertMediaRequestBody{}
 insertReq.Image = "http://releases.ubuntu.com/19.04/ubuntu-19.04-live-server-amd64.iso"
 insertReq.Inserted = true
 redfishApi.InsertVirtualMedia(context.Background(), manager_id, "Cd", insertReq)
@@ -68,7 +68,7 @@ redfishApi.InsertVirtualMedia(context.Background(), manager_id, "Cd", insertReq)
 
 ```go
 system_id := "dd9fd064-263b-469c-91d4-d45f341fe2c5"
-systemReq := rf_client.ComputerSystem{}
+systemReq := redfish.ComputerSystem{}
 systemReq.Boot.BootSourceOverrideTarget = "Cd"
 redfishApi.SetSystem(context.Background(), system_id, systemReq)
 ```
