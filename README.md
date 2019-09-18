@@ -12,7 +12,7 @@ To use `go-redfish` library in go code, you just need to import the library as b
 import (
     "fmt"
 
-    redfish "github.com/nordix-airship/go-redfish/client"
+    redfish "github.com/Nordix/go-redfish/client"
 )
 ```
 
@@ -28,7 +28,7 @@ cfg := &redfish.Configuration{
 redfishApi := redfish.NewAPIClient(cfg).DefaultApi
 ```
 
-Use `redfishApi` to interact with redfish server. This object contains get, set and list functions for different redfish resources. There are loose validations on the client side for the required paramaters of a certain API. In case of any error e.g. missing a required parameter; then server will generate the error. To see the available actions for API endpoints see [Endpoint Reference](https://github.com/nordix-airship/go-redfish/tree/master/client#documentation-for-api-endpoints) and [Model Definitions](https://github.com/nordix-airship/go-redfish/tree/master/client#documentation-for-models). See following examples for different operations.
+Use `redfishApi` to interact with redfish server. This object contains get, set and list functions for different redfish resources. There are loose validations on the client side for the required paramaters of a certain API. In case of any error e.g. missing a required parameter; then server will generate the error. To see the available actions for API endpoints see [Endpoint Reference](https://github.com/Nordix/go-redfish/tree/master/client#documentation-for-api-endpoints) and [Model Definitions](https://github.com/Nordix/go-redfish/tree/master/client#documentation-for-models). See following examples for different operations.
 
 ## Examples ##
 

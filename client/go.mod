@@ -1,4 +1,4 @@
-module github.com/nordix-airship/go-redfish/client
+module github.com/Nordix/go-redfish/client
 
 require (
     github.com/antihax/optional v0.0.0-20180406194304-ca021399b1a6
