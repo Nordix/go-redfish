@@ -8,9 +8,6 @@
  */
 
 package client
-import (
-	"time"
-)
 
 // Redfish manager resource.
 type Manager struct {
@@ -31,7 +28,7 @@ type Manager struct {
 	Model *string `json:"Model,omitempty"`
 	ManagerType ManagerType `json:"ManagerType,omitempty"`
 	Status Status `json:"Status,omitempty"`
-	DateTime *time.Time `json:"DateTime,omitempty"`
+	DateTime *string `json:"DateTime,omitempty"`
 	// The time offset from UTC that the DateTime property is set to in format: +06:00 .
 	DateTimeLocalOffset *string `json:"DateTimeLocalOffset,omitempty"`
 	// description

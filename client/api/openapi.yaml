@@ -879,7 +879,7 @@ components:
         ServiceEntryPointUUID: ServiceEntryPointUUID
         '@odata.type': '@odata.type'
         '@odata.context': '@odata.context'
-        DateTime: 2000-01-23T04:56:07.000+00:00
+        DateTime: DateTime
         FirmwareVersion: FirmwareVersion
         Name: Name
         '@odata.id': '@odata.id'
@@ -945,7 +945,7 @@ components:
         Status:
           $ref: '#/components/schemas/Status'
         DateTime:
-          format: date-time
+          format: string
           nullable: true
           readOnly: false
           type: string

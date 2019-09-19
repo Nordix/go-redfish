@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Model** | Pointer to **string** |  | [optional] 
 **ManagerType** | [**ManagerType**](ManagerType.md) |  | [optional] 
 **Status** | [**Status**](Status.md) |  | [optional] 
-**DateTime** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
+**DateTime** | Pointer to **string** |  | [optional] 
 **DateTimeLocalOffset** | Pointer to **string** | The time offset from UTC that the DateTime property is set to in format: +06:00 . | [optional] 
 **Description** | Pointer to **string** | description | [optional] 
 **EthernetInterfaces** | [**IdRef**](idRef.md) |  | [optional] 

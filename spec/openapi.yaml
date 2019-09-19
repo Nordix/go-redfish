@@ -465,7 +465,8 @@ components:
         'Status':
           $ref: '#/components/schemas/Status'
         'DateTime':
-          format: date-time
+          #format: date-time
+          format: string
           nullable: true
           readOnly: false
           type: string
