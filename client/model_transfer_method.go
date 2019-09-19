@@ -12,6 +12,6 @@ type TransferMethod string
 
 // List of TransferMethod
 const (
-	STREAM TransferMethod = "Stream"
-	UPLOAD TransferMethod = "Upload"
+	TRANSFERMETHOD_STREAM TransferMethod = "Stream"
+	TRANSFERMETHOD_UPLOAD TransferMethod = "Upload"
 )

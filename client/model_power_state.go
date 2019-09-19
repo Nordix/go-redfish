@@ -12,8 +12,8 @@ type PowerState string
 
 // List of PowerState
 const (
-	TRUE PowerState = "true"
-	FALSE PowerState = "false"
-	POWERING_ON PowerState = "PoweringOn"
-	POWERING_OFF PowerState = "PoweringOff"
+	POWERSTATE_TRUE PowerState = "true"
+	POWERSTATE_FALSE PowerState = "false"
+	POWERSTATE_POWERING_ON PowerState = "PoweringOn"
+	POWERSTATE_POWERING_OFF PowerState = "PoweringOff"
 )

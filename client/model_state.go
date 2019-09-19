@@ -12,15 +12,15 @@ type State string
 
 // List of State
 const (
-	ENABLED State = "Enabled"
-	DISABLED State = "Disabled"
-	STANDBY_OFFLINE State = "StandbyOffline"
-	STANDBY_SPARE State = "StandbySpare"
-	IN_TEST State = "InTest"
-	STARTING State = "Starting"
-	ABSENT State = "Absent"
-	UNAVAILABLE_OFFLINE State = "UnavailableOffline"
-	DEFERRING State = "Deferring"
-	QUIESCED State = "Quiesced"
-	UPDATING State = "Updating"
+	STATE_ENABLED State = "Enabled"
+	STATE_DISABLED State = "Disabled"
+	STATE_STANDBY_OFFLINE State = "StandbyOffline"
+	STATE_STANDBY_SPARE State = "StandbySpare"
+	STATE_IN_TEST State = "InTest"
+	STATE_STARTING State = "Starting"
+	STATE_ABSENT State = "Absent"
+	STATE_UNAVAILABLE_OFFLINE State = "UnavailableOffline"
+	STATE_DEFERRING State = "Deferring"
+	STATE_QUIESCED State = "Quiesced"
+	STATE_UPDATING State = "Updating"
 )

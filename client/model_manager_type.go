@@ -12,10 +12,10 @@ type ManagerType string
 
 // List of ManagerType
 const (
-	MANAGEMENT_CONTROLLER ManagerType = "ManagementController"
-	ENCLOSURE_MANAGER ManagerType = "EnclosureManager"
-	BMC ManagerType = "BMC"
-	RACK_MANAGER ManagerType = "RackManager"
-	AUXILIARY_CONTROLLER ManagerType = "AuxiliaryController"
-	SERVICE ManagerType = "Service"
+	MANAGERTYPE_MANAGEMENT_CONTROLLER ManagerType = "ManagementController"
+	MANAGERTYPE_ENCLOSURE_MANAGER ManagerType = "EnclosureManager"
+	MANAGERTYPE_BMC ManagerType = "BMC"
+	MANAGERTYPE_RACK_MANAGER ManagerType = "RackManager"
+	MANAGERTYPE_AUXILIARY_CONTROLLER ManagerType = "AuxiliaryController"
+	MANAGERTYPE_SERVICE ManagerType = "Service"
 )

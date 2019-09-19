@@ -12,8 +12,8 @@ type IndicatorLed string
 
 // List of IndicatorLED
 const (
-	UNKNOWN IndicatorLed = "Unknown"
-	LIT IndicatorLed = "Lit"
-	BLINKING IndicatorLed = "Blinking"
-	OFF IndicatorLed = "Off"
+	INDICATORLED_UNKNOWN IndicatorLed = "Unknown"
+	INDICATORLED_LIT IndicatorLed = "Lit"
+	INDICATORLED_BLINKING IndicatorLed = "Blinking"
+	INDICATORLED_OFF IndicatorLed = "Off"
 )

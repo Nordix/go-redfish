@@ -12,8 +12,8 @@ type ConnectedVia string
 
 // List of ConnectedVia
 const (
-	NOT_CONNECTED ConnectedVia = "NotConnected"
-	URI ConnectedVia = "URI"
-	APPLET ConnectedVia = "Applet"
-	OEM ConnectedVia = "Oem"
+	CONNECTEDVIA_NOT_CONNECTED ConnectedVia = "NotConnected"
+	CONNECTEDVIA_URI ConnectedVia = "URI"
+	CONNECTEDVIA_APPLET ConnectedVia = "Applet"
+	CONNECTEDVIA_OEM ConnectedVia = "Oem"
 )

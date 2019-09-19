@@ -12,6 +12,6 @@ type BootSourceOverrideEnabled string
 
 // List of BootSourceOverrideEnabled
 const (
-	ONCE BootSourceOverrideEnabled = "Once"
-	CONTINUOUS BootSourceOverrideEnabled = "Continuous"
+	BOOTSOURCEOVERRIDEENABLED_ONCE BootSourceOverrideEnabled = "Once"
+	BOOTSOURCEOVERRIDEENABLED_CONTINUOUS BootSourceOverrideEnabled = "Continuous"
 )

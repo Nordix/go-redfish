@@ -12,12 +12,12 @@ type TransferProtocolType string
 
 // List of TransferProtocolType
 const (
-	CIFS TransferProtocolType = "CIFS"
-	FTP TransferProtocolType = "FTP"
-	SFTP TransferProtocolType = "SFTP"
-	HTTP TransferProtocolType = "HTTP"
-	HTTPS TransferProtocolType = "HTTPS"
-	NFS TransferProtocolType = "NFS"
-	SCP TransferProtocolType = "SCP"
-	TFTP TransferProtocolType = "TFTP"
+	TRANSFERPROTOCOLTYPE_CIFS TransferProtocolType = "CIFS"
+	TRANSFERPROTOCOLTYPE_FTP TransferProtocolType = "FTP"
+	TRANSFERPROTOCOLTYPE_SFTP TransferProtocolType = "SFTP"
+	TRANSFERPROTOCOLTYPE_HTTP TransferProtocolType = "HTTP"
+	TRANSFERPROTOCOLTYPE_HTTPS TransferProtocolType = "HTTPS"
+	TRANSFERPROTOCOLTYPE_NFS TransferProtocolType = "NFS"
+	TRANSFERPROTOCOLTYPE_SCP TransferProtocolType = "SCP"
+	TRANSFERPROTOCOLTYPE_TFTP TransferProtocolType = "TFTP"
 )

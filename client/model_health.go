@@ -12,7 +12,7 @@ type Health string
 
 // List of Health
 const (
-	OK Health = "OK"
-	WARNING Health = "Warning"
-	CRITICAL Health = "Critical"
+	HEALTH_OK Health = "OK"
+	HEALTH_WARNING Health = "Warning"
+	HEALTH_CRITICAL Health = "Critical"
 )
