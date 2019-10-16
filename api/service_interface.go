@@ -7,7 +7,6 @@ import (
 	client "github.com/Nordix/go-redfish/client"
 )
 
-//go:generate mockgen -destination "mocks/redfish_service_mocks.go" -package mocks github.com/Nordix/go-redfish/api RedfishAPI
 //go:generate mockery -name=RedfishAPI -output ./mocks
 type RedfishAPI interface {
 	EjectVirtualMedia(context.Context,
