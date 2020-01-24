@@ -8,7 +8,7 @@
  */
 
 package client
-
+// Status struct for Status
 type Status struct {
 	Health Health `json:"Health,omitempty"`
 	HealthRollup Health `json:"HealthRollup,omitempty"`

@@ -8,7 +8,7 @@
  */
 
 package client
-
+// RedfishErrorError struct for RedfishErrorError
 type RedfishErrorError struct {
 	MessageExtendedInfo []Message `json:"@Message.ExtendedInfo,omitempty"`
 	Code string `json:"code"`

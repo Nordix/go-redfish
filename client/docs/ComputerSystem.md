@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The name of the resource. | [optional] 
-**Name** | **string** | The name of the resource. | 
+**Id** | **string** | The name of the resource. | [optional] [readonly] 
+**Name** | **string** | The name of the resource. | [readonly] 
 **RedfishVersion** | **string** | redfish version | [optional] 
 **UUID** | **string** |  | [optional] 
-**OdataType** | **string** | The type of a resource. | 
-**OdataId** | **string** | The unique identifier for a resource. | 
-**OdataContext** | **string** | The OData description of a payload. | [optional] 
+**OdataType** | **string** | The type of a resource. | [readonly] 
+**OdataId** | **string** | The unique identifier for a resource. | [readonly] 
+**OdataContext** | **string** | The OData description of a payload. | [optional] [readonly] 
 **RedfishCopyright** | **string** | redfish copyright | [optional] 
 **Bios** | [**IdRef**](idRef.md) |  | [optional] 
 **Processors** | [**IdRef**](idRef.md) |  | [optional] 

@@ -33,16 +33,21 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**EjectVirtualMedia**](docs/DefaultApi.md#ejectvirtualmedia) | **Post** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.EjectMedia | 
+*DefaultApi* | [**FirmwareInventory**](docs/DefaultApi.md#firmwareinventory) | **Get** /redfish/v1/UpdateService/FirmwareInventory | 
+*DefaultApi* | [**FirmwareInventoryDownloadImage**](docs/DefaultApi.md#firmwareinventorydownloadimage) | **Post** /redfish/v1/UpdateService/FirmwareInventory | 
 *DefaultApi* | [**GetManager**](docs/DefaultApi.md#getmanager) | **Get** /redfish/v1/Managers/{managerId} | 
 *DefaultApi* | [**GetManagerVirtualMedia**](docs/DefaultApi.md#getmanagervirtualmedia) | **Get** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId} | 
 *DefaultApi* | [**GetRoot**](docs/DefaultApi.md#getroot) | **Get** /redfish/v1 | 
 *DefaultApi* | [**GetSystem**](docs/DefaultApi.md#getsystem) | **Get** /redfish/v1/Systems/{systemId} | 
+*DefaultApi* | [**GetTask**](docs/DefaultApi.md#gettask) | **Get** /redfish/v1/TaskService/Tasks/{taskId} | 
 *DefaultApi* | [**InsertVirtualMedia**](docs/DefaultApi.md#insertvirtualmedia) | **Post** /redfish/v1/Managers/{managerId}/VirtualMedia/{virtualMediaId}/Actions/VirtualMedia.InsertMedia | 
 *DefaultApi* | [**ListManagerVirtualMedia**](docs/DefaultApi.md#listmanagervirtualmedia) | **Get** /redfish/v1/Managers/{managerId}/VirtualMedia | 
 *DefaultApi* | [**ListManagers**](docs/DefaultApi.md#listmanagers) | **Get** /redfish/v1/Managers | 
 *DefaultApi* | [**ListSystems**](docs/DefaultApi.md#listsystems) | **Get** /redfish/v1/Systems | 
 *DefaultApi* | [**ResetSystem**](docs/DefaultApi.md#resetsystem) | **Post** /redfish/v1/Systems/{ComputerSystemId}/Actions/ComputerSystem.Reset | 
 *DefaultApi* | [**SetSystem**](docs/DefaultApi.md#setsystem) | **Patch** /redfish/v1/Systems/{systemId} | 
+*DefaultApi* | [**UpdateService**](docs/DefaultApi.md#updateservice) | **Get** /redfish/v1/UpdateService | 
+*DefaultApi* | [**UpdateServiceSimpleUpdate**](docs/DefaultApi.md#updateservicesimpleupdate) | **Post** /redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate | 
 
 
 ## Documentation For Models
@@ -55,15 +60,18 @@ Class | Method | HTTP request | Description
  - [ComputerSystemActions](docs/ComputerSystemActions.md)
  - [ComputerSystemReset](docs/ComputerSystemReset.md)
  - [ConnectedVia](docs/ConnectedVia.md)
+ - [FirmwareInventory](docs/FirmwareInventory.md)
  - [Health](docs/Health.md)
  - [IdRef](docs/IdRef.md)
  - [IndicatorLed](docs/IndicatorLed.md)
+ - [InlineObject](docs/InlineObject.md)
  - [InsertMediaRequestBody](docs/InsertMediaRequestBody.md)
  - [Manager](docs/Manager.md)
  - [ManagerLinks](docs/ManagerLinks.md)
  - [ManagerType](docs/ManagerType.md)
  - [MemorySummary](docs/MemorySummary.md)
  - [Message](docs/Message.md)
+ - [Payload](docs/Payload.md)
  - [PowerState](docs/PowerState.md)
  - [ProcessorSummary](docs/ProcessorSummary.md)
  - [RedfishError](docs/RedfishError.md)
@@ -71,11 +79,16 @@ Class | Method | HTTP request | Description
  - [ResetRequestBody](docs/ResetRequestBody.md)
  - [ResetType](docs/ResetType.md)
  - [Root](docs/Root.md)
+ - [SimpleUpdateRequestBody](docs/SimpleUpdateRequestBody.md)
  - [State](docs/State.md)
  - [Status](docs/Status.md)
  - [SystemLinks](docs/SystemLinks.md)
+ - [Task](docs/Task.md)
+ - [TaskState](docs/TaskState.md)
  - [TransferMethod](docs/TransferMethod.md)
  - [TransferProtocolType](docs/TransferProtocolType.md)
+ - [UpdateService](docs/UpdateService.md)
+ - [UpdateServiceActions](docs/UpdateServiceActions.md)
  - [VirtualMedia](docs/VirtualMedia.md)
  - [VirtualMediaActions](docs/VirtualMediaActions.md)
  - [VirtualMediaActionsVirtualMediaEjectMedia](docs/VirtualMediaActionsVirtualMediaEjectMedia.md)
@@ -84,6 +97,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
  Endpoints do not require authorization.
+
 
 
 ## Author

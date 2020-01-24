@@ -8,6 +8,7 @@
  */
 
 package client
+// ResetType the model 'ResetType'
 type ResetType string
 
 // List of ResetType

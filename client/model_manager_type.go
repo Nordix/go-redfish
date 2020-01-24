@@ -8,6 +8,7 @@
  */
 
 package client
+// ManagerType the model 'ManagerType'
 type ManagerType string
 
 // List of ManagerType

@@ -8,7 +8,7 @@
  */
 
 package client
-
+// Boot struct for Boot
 type Boot struct {
 	BootSourceOverrideEnabled BootSourceOverrideEnabled `json:"BootSourceOverrideEnabled,omitempty"`
 	BootSourceOverrideTarget BootSource `json:"BootSourceOverrideTarget,omitempty"`

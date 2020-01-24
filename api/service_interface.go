@@ -18,6 +18,19 @@ type RedfishAPI interface {
 		error,
 	)
 
+	FirmwareInventory(context.Context,
+	) (client.Collection,
+		*http.Response,
+		error,
+	)
+
+	FirmwareInventoryDownloadImage(context.Context,
+		*client.FirmwareInventoryDownloadImageOpts,
+	) (client.RedfishError,
+		*http.Response,
+		error,
+	)
+
 	GetManager(context.Context,
 		string,
 	) (client.Manager,
@@ -42,6 +55,13 @@ type RedfishAPI interface {
 	GetSystem(context.Context,
 		string,
 	) (client.ComputerSystem,
+		*http.Response,
+		error,
+	)
+
+	GetTask(context.Context,
+		string,
+	) (client.Task,
 		*http.Response,
 		error,
 	)
@@ -86,6 +106,19 @@ type RedfishAPI interface {
 		string,
 		client.ComputerSystem,
 	) (client.ComputerSystem,
+		*http.Response,
+		error,
+	)
+
+	UpdateService(context.Context,
+	) (client.UpdateService,
+		*http.Response,
+		error,
+	)
+
+	UpdateServiceSimpleUpdate(context.Context,
+		client.SimpleUpdateRequestBody,
+	) (client.RedfishError,
 		*http.Response,
 		error,
 	)

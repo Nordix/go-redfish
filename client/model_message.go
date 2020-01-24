@@ -8,7 +8,7 @@
  */
 
 package client
-
+// Message struct for Message
 type Message struct {
 	Message string `json:"Message,omitempty"`
 	MessageArgs []string `json:"MessageArgs,omitempty"`

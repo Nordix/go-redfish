@@ -8,7 +8,7 @@
  */
 
 package client
-
+// ProcessorSummary struct for ProcessorSummary
 type ProcessorSummary struct {
 	Count *int32 `json:"Count,omitempty"`
 	Status Status `json:"Status,omitempty"`

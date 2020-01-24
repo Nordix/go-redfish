@@ -8,11 +8,8 @@
  */
 
 package client
-// TransferMethod the model 'TransferMethod'
-type TransferMethod string
-
-// List of TransferMethod
-const (
-	TRANSFERMETHOD_STREAM TransferMethod = "Stream"
-	TRANSFERMETHOD_UPLOAD TransferMethod = "Upload"
-)
+// FirmwareInventory struct for FirmwareInventory
+type FirmwareInventory struct {
+	// The unique identifier for a resource.
+	OdataId string `json:"@odata.id,omitempty"`
+}

@@ -8,7 +8,7 @@
  */
 
 package client
-
+// MemorySummary struct for MemorySummary
 type MemorySummary struct {
 	TotalSystemMemoryGiB *float32 `json:"TotalSystemMemoryGiB,omitempty"`
 	TotalSystemPersistentMemoryGiB *float32 `json:"TotalSystemPersistentMemoryGiB,omitempty"`

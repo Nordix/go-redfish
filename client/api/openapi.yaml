@@ -286,7 +286,117 @@ paths:
               schema:
                 $ref: '#/components/schemas/RedfishError'
           description: Error condition
+  /redfish/v1/UpdateService:
+    get:
+      operationId: Update_Service
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateService'
+          description: Update Service
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+  /redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate:
+    post:
+      operationId: UpdateService_Simple_Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimpleUpdateRequestBody'
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Update Service Simple Update
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+  /redfish/v1/UpdateService/FirmwareInventory:
+    get:
+      operationId: Firmware_Inventory
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+          description: Collection of Firmware Inventory
+    post:
+      operationId: FirmwareInventory_Download_Image
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          multipart/formdata:
+            encoding:
+              softwareImage:
+                contentType: application/octet-stream
+                style: form
+            schema:
+              properties:
+                softwareImage:
+                  format: binary
+                  type: string
+              type: object
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Update Service Simple Update
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
+  /redfish/v1/TaskService/Tasks/{taskId}:
+    get:
+      operationId: get_task
+      parameters:
+      - description: Task ID
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+          description: Get details of a Task
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedfishError'
+          description: Error condition
 components:
+  requestBodies:
+    inline_object:
+      content:
+        multipart/formdata:
+          schema:
+            $ref: '#/components/schemas/inline_object'
+      required: true
   schemas:
     BootSource:
       enum:
@@ -1107,6 +1217,347 @@ components:
       additionalProperties: false
       properties: {}
       type: object
+    FirmwareInventory:
+      example:
+        '@odata.id': '@odata.id'
+      properties:
+        '@odata.id':
+          description: The unique identifier for a resource.
+          format: uri-reference
+          readOnly: true
+          type: string
+      type: object
+    UpdateService:
+      additionalProperties: false
+      description: Redfish Update Service.
+      example:
+        '@odata.id': '@odata.id'
+        Description: Description
+        HttpPushUri: HttpPushUri
+        Actions:
+          '#UpdateService.SimpleUpdate':
+            target: target
+          '#UpdateService.StartUpdate':
+            target: target
+        '@odata.type': '@odata.type'
+        FirmwareInventory:
+          '@odata.id': '@odata.id'
+        ServiceEnabled: true
+        Id: Id
+        '@odata.context': '@odata.context'
+        Name: Name
+      properties:
+        FirmwareInventory:
+          $ref: '#/components/schemas/FirmwareInventory'
+        Id:
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        Name:
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        '@odata.type':
+          description: The type of a resource.
+          readOnly: true
+          type: string
+        '@odata.id':
+          description: The unique identifier for a resource.
+          format: uri-reference
+          readOnly: true
+          type: string
+        '@odata.context':
+          description: The OData description of a payload.
+          format: uri-reference
+          readOnly: true
+          type: string
+        Description:
+          description: description
+          nullable: true
+          readOnly: true
+          type: string
+        HttpPushUri:
+          format: uri-reference
+          readOnly: true
+          type: string
+        ServiceEnabled:
+          nullable: true
+          readOnly: false
+          type: boolean
+        Actions:
+          $ref: '#/components/schemas/UpdateService_Actions'
+      required:
+      - '@odata.id'
+      - '@odata.type'
+      - Name
+      type: object
+    SimpleUpdateRequestBody:
+      additionalProperties: false
+      example:
+        Targets:
+        - Targets
+        - Targets
+        ImageURI: ImageURI
+      properties:
+        ImageURI:
+          format: uri-reference
+          type: string
+        Targets:
+          items:
+            type: string
+          type: array
+        TransferProtocolType:
+          $ref: '#/components/schemas/TransferProtocolType'
+      required:
+      - ImageURI
+      type: object
+    Payload:
+      additionalProperties: false
+      description: The HTTP and JSON payload details for this Task.
+      example:
+        HttpHeaders:
+        - HttpHeaders
+        - HttpHeaders
+        JsonBody: JsonBody
+        HttpOperation: HttpOperation
+        TargetUri: https://openapi-generator.tech
+      properties:
+        HttpHeaders:
+          description: This represents the HTTP headers used in the operation of this
+            Task.
+          items:
+            type: string
+          readOnly: true
+          type: array
+          x-longDescription: The value of this property shall be an array of HTTP
+            headers used in the execution of this Task.
+        HttpOperation:
+          description: The HTTP operation to perform to execute this Task.
+          readOnly: true
+          type: string
+          x-longDescription: This property shall contain the HTTP operation to execute
+            for this Task.
+        JsonBody:
+          description: This property contains the JSON payload to use in the execution
+            of this Task.
+          readOnly: true
+          type: string
+          x-longDescription: The value of this property shall be JSON formatted payload
+            used for this Task.
+        TargetUri:
+          description: The URI of the target for this task.
+          format: uri
+          readOnly: true
+          type: string
+          x-longDescription: This property shall contain a URI referencing a location
+            to be used as the target for an HTTP operation.
+      type: object
+      x-longDescription: This object shall contain information detailing the HTTP
+        and JSON payload information for executing this Task.
+      x-patternProperties:
+        ^([a-zA-Z_][a-zA-Z0-9_]*)?@(odata|Redfish|Message)\.[a-zA-Z_][a-zA-Z0-9_.]+$:
+          description: This property shall specify a valid odata or Redfish property.
+    Task:
+      additionalProperties: false
+      description: This resource contains information about a specific Task scheduled
+        by or being executed by a Redfish service's Task Service.
+      example:
+        Description: Description
+        Messages:
+        - MessageArgs:
+          - MessageArgs
+          - MessageArgs
+          Message: Message
+          RelatedProperties:
+          - RelatedProperties
+          - RelatedProperties
+          Severity: Severity
+          MessageId: MessageId
+          Resolution: Resolution
+        - MessageArgs:
+          - MessageArgs
+          - MessageArgs
+          Message: Message
+          RelatedProperties:
+          - RelatedProperties
+          - RelatedProperties
+          Severity: Severity
+          MessageId: MessageId
+          Resolution: Resolution
+        EndTime: 2000-01-23T04:56:07.000+00:00
+        '@odata.type': '@odata.type'
+        '@odata.etag': '@odata.etag'
+        StartTime: 2000-01-23T04:56:07.000+00:00
+        '@odata.context': '@odata.context'
+        Name: Name
+        '@odata.id': '@odata.id'
+        HidePayload: true
+        Oem: Oem
+        TaskMonitor: https://openapi-generator.tech
+        Payload:
+          HttpHeaders:
+          - HttpHeaders
+          - HttpHeaders
+          JsonBody: JsonBody
+          HttpOperation: HttpOperation
+          TargetUri: https://openapi-generator.tech
+        Id: Id
+      properties:
+        '@odata.context':
+          description: The OData description of a payload.
+          format: uri-reference
+          readOnly: true
+          type: string
+        '@odata.etag':
+          description: The current ETag of the resource.
+          readOnly: true
+          type: string
+        '@odata.id':
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        '@odata.type':
+          description: The type of a resource.
+          readOnly: true
+          type: string
+        Description:
+          description: description
+          nullable: true
+          readOnly: true
+          type: string
+        EndTime:
+          description: The date-time stamp that the task was last completed.
+          format: date-time
+          readOnly: true
+          type: string
+          x-longDescription: The value of this property shall indicate the time the
+            task was completed.
+        HidePayload:
+          description: Indicates that the contents of the Payload should be hidden
+            from view after the Task has been created.  When set to True, the Payload
+            object will not be returned on GET.
+          readOnly: true
+          type: boolean
+          x-longDescription: This property shall be set to True if the Payload object
+            shall not be returned on GET operations, and set to False if the contents
+            can be returned normally. If this property is not specified when the Task
+            is created, the default value shall be False.
+        Id:
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        Messages:
+          description: This is an array of messages associated with the task.
+          items:
+            $ref: '#/components/schemas/Message'
+          type: array
+          x-longDescription: The value of this property shall be an array of messages
+            associated with the task.
+        Name:
+          description: The name of the resource.
+          readOnly: true
+          type: string
+        Oem:
+          description: This is the manufacturer/provider specific extension moniker
+            used to divide the Oem object into sections.
+          type: string
+          x-longDescription: The value of this string shall be of the format for the
+            reserved word *Oem*.
+        Payload:
+          $ref: '#/components/schemas/Payload'
+        StartTime:
+          description: The date-time stamp that the task was last started.
+          format: date-time
+          readOnly: true
+          type: string
+          x-longDescription: The value of this property shall indicate the time the
+            task was started.
+        TaskMonitor:
+          description: The URI of the Task Monitor for this task.
+          format: uri
+          readOnly: true
+          type: string
+          x-longDescription: This property shall contain a URI to Task Monitor as
+            defined in the Redfish Specification.
+        TaskState:
+          $ref: '#/components/schemas/TaskState'
+        TaskStatus:
+          $ref: '#/components/schemas/Health'
+      required:
+      - '@odata.id'
+      - '@odata.type'
+      - Id
+      - Name
+      type: object
+      x-longDescription: This resource shall be used to represent a task for a Redfish
+        implementation.
+      x-patternProperties:
+        ^([a-zA-Z_][a-zA-Z0-9_]*)?@(odata|Redfish|Message)\.[a-zA-Z_][a-zA-Z0-9_.]+$:
+          description: This property shall specify a valid odata or Redfish property.
+    TaskState:
+      enum:
+      - New
+      - Starting
+      - Running
+      - Suspended
+      - Interrupted
+      - Pending
+      - Stopping
+      - Completed
+      - Killed
+      - Exception
+      - Service
+      - Cancelling
+      - Cancelled
+      type: string
+      x-enumDeprecated:
+        Killed: This value has been deprecated and is being replaced by the value
+          Cancelled which has more determinate semantics.
+      x-enumDescriptions:
+        Cancelled: Task has been cancelled by an operator or internal process.
+        Cancelling: Task is in the process of being cancelled.
+        Completed: Task has completed.
+        Exception: Task has stopped due to an exception condition.
+        Interrupted: Task has been interrupted.
+        Killed: Task was terminated.
+        New: A new task.
+        Pending: Task is pending and has not started.
+        Running: Task is running normally.
+        Service: Task is running as a service.
+        Starting: Task is starting.
+        Stopping: Task is in the process of stopping.
+        Suspended: Task has been suspended.
+      x-enumLongDescriptions:
+        Cancelled: This value shall represent that the operation was cancelled either
+          through a Delete on a Task Monitor or Task Resource or by an internal process.
+        Cancelling: This value shall represent that the operation is in the process
+          of being cancelled.
+        Completed: This value shall represent that the operation is complete and completed
+          sucessfully or with warnings.
+        Exception: This value shall represent that the operation is complete and completed
+          with errors.
+        Interrupted: This value shall represent that the operation has been interrupted
+          but is expected to restart and is therefore not complete.
+        Killed: This value shall represent that the operation is complete because
+          the task was killed by an operator.
+        New: This value shall represent that this task is newly created but the operation
+          has not yet started.
+        Pending: This value shall represent that the operation is pending some condition
+          and has not yet begun to execute.
+        Running: This value shall represent that the operation is executing.
+        Service: This value shall represent that the operation is now running as a
+          service and expected to continue operation until stopped or killed.
+        Starting: This value shall represent that the operation is starting.
+        Stopping: This value shall represent that the operation is stopping but is
+          not yet complete.
+        Suspended: This value shall represent that the operation has been suspended
+          but is expected to restart and is therefore not complete.
+    inline_object:
+      properties:
+        softwareImage:
+          format: binary
+          type: string
+      type: object
     RedfishError_error:
       example:
         '@Message.ExtendedInfo':
@@ -1156,7 +1607,7 @@ components:
       properties:
         '#ComputerSystem.Reset':
           $ref: '#/components/schemas/ComputerSystemReset'
-    VirtualMedia_Actions_VirtualMedia_EjectMedia:
+    VirtualMedia_Actions__VirtualMedia_EjectMedia:
       example:
         target: target
       properties:
@@ -1173,6 +1624,17 @@ components:
           target: target
       properties:
         '#VirtualMedia.EjectMedia':
-          $ref: '#/components/schemas/VirtualMedia_Actions_VirtualMedia_EjectMedia'
+          $ref: '#/components/schemas/VirtualMedia_Actions__VirtualMedia_EjectMedia'
         '#VirtualMedia.InsertMedia':
-          $ref: '#/components/schemas/VirtualMedia_Actions_VirtualMedia_EjectMedia'
+          $ref: '#/components/schemas/VirtualMedia_Actions__VirtualMedia_EjectMedia'
+    UpdateService_Actions:
+      example:
+        '#UpdateService.SimpleUpdate':
+          target: target
+        '#UpdateService.StartUpdate':
+          target: target
+      properties:
+        '#UpdateService.SimpleUpdate':
+          $ref: '#/components/schemas/VirtualMedia_Actions__VirtualMedia_EjectMedia'
+        '#UpdateService.StartUpdate':
+          $ref: '#/components/schemas/VirtualMedia_Actions__VirtualMedia_EjectMedia'

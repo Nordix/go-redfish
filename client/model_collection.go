@@ -8,8 +8,7 @@
  */
 
 package client
-
-// A Collection of ComputerSystem resource instances.
+// Collection A Collection of ComputerSystem resource instances.
 type Collection struct {
 	// context
 	OdataContext string `json:"@odata.context,omitempty"`

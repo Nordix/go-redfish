@@ -8,6 +8,7 @@
  */
 
 package client
+// ConnectedVia the model 'ConnectedVia'
 type ConnectedVia string
 
 // List of ConnectedVia

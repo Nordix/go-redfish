@@ -8,7 +8,7 @@
  */
 
 package client
-
+// ComputerSystemActions struct for ComputerSystemActions
 type ComputerSystemActions struct {
 	ComputerSystemReset ComputerSystemReset `json:"#ComputerSystem.Reset,omitempty"`
 }

@@ -47,6 +47,66 @@ func (_m *RedfishAPI) EjectVirtualMedia(_a0 context.Context, _a1 string, _a2 str
 	return r0, r1, r2
 }
 
+// FirmwareInventory provides a mock function with given fields: _a0
+func (_m *RedfishAPI) FirmwareInventory(_a0 context.Context) (client.Collection, *http.Response, error) {
+	ret := _m.Called(_a0)
+
+	var r0 client.Collection
+	if rf, ok := ret.Get(0).(func(context.Context) client.Collection); ok {
+		r0 = rf(_a0)
+	} else {
+		r0 = ret.Get(0).(client.Collection)
+	}
+
+	var r1 *http.Response
+	if rf, ok := ret.Get(1).(func(context.Context) *http.Response); ok {
+		r1 = rf(_a0)
+	} else {
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*http.Response)
+		}
+	}
+
+	var r2 error
+	if rf, ok := ret.Get(2).(func(context.Context) error); ok {
+		r2 = rf(_a0)
+	} else {
+		r2 = ret.Error(2)
+	}
+
+	return r0, r1, r2
+}
+
+// FirmwareInventoryDownloadImage provides a mock function with given fields: _a0, _a1
+func (_m *RedfishAPI) FirmwareInventoryDownloadImage(_a0 context.Context, _a1 *client.FirmwareInventoryDownloadImageOpts) (client.RedfishError, *http.Response, error) {
+	ret := _m.Called(_a0, _a1)
+
+	var r0 client.RedfishError
+	if rf, ok := ret.Get(0).(func(context.Context, *client.FirmwareInventoryDownloadImageOpts) client.RedfishError); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		r0 = ret.Get(0).(client.RedfishError)
+	}
+
+	var r1 *http.Response
+	if rf, ok := ret.Get(1).(func(context.Context, *client.FirmwareInventoryDownloadImageOpts) *http.Response); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*http.Response)
+		}
+	}
+
+	var r2 error
+	if rf, ok := ret.Get(2).(func(context.Context, *client.FirmwareInventoryDownloadImageOpts) error); ok {
+		r2 = rf(_a0, _a1)
+	} else {
+		r2 = ret.Error(2)
+	}
+
+	return r0, r1, r2
+}
+
 // GetManager provides a mock function with given fields: _a0, _a1
 func (_m *RedfishAPI) GetManager(_a0 context.Context, _a1 string) (client.Manager, *http.Response, error) {
 	ret := _m.Called(_a0, _a1)
@@ -146,6 +206,36 @@ func (_m *RedfishAPI) GetSystem(_a0 context.Context, _a1 string) (client.Compute
 		r0 = rf(_a0, _a1)
 	} else {
 		r0 = ret.Get(0).(client.ComputerSystem)
+	}
+
+	var r1 *http.Response
+	if rf, ok := ret.Get(1).(func(context.Context, string) *http.Response); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*http.Response)
+		}
+	}
+
+	var r2 error
+	if rf, ok := ret.Get(2).(func(context.Context, string) error); ok {
+		r2 = rf(_a0, _a1)
+	} else {
+		r2 = ret.Error(2)
+	}
+
+	return r0, r1, r2
+}
+
+// GetTask provides a mock function with given fields: _a0, _a1
+func (_m *RedfishAPI) GetTask(_a0 context.Context, _a1 string) (client.Task, *http.Response, error) {
+	ret := _m.Called(_a0, _a1)
+
+	var r0 client.Task
+	if rf, ok := ret.Get(0).(func(context.Context, string) client.Task); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		r0 = ret.Get(0).(client.Task)
 	}
 
 	var r1 *http.Response
@@ -340,6 +430,66 @@ func (_m *RedfishAPI) SetSystem(_a0 context.Context, _a1 string, _a2 client.Comp
 	var r2 error
 	if rf, ok := ret.Get(2).(func(context.Context, string, client.ComputerSystem) error); ok {
 		r2 = rf(_a0, _a1, _a2)
+	} else {
+		r2 = ret.Error(2)
+	}
+
+	return r0, r1, r2
+}
+
+// UpdateService provides a mock function with given fields: _a0
+func (_m *RedfishAPI) UpdateService(_a0 context.Context) (client.UpdateService, *http.Response, error) {
+	ret := _m.Called(_a0)
+
+	var r0 client.UpdateService
+	if rf, ok := ret.Get(0).(func(context.Context) client.UpdateService); ok {
+		r0 = rf(_a0)
+	} else {
+		r0 = ret.Get(0).(client.UpdateService)
+	}
+
+	var r1 *http.Response
+	if rf, ok := ret.Get(1).(func(context.Context) *http.Response); ok {
+		r1 = rf(_a0)
+	} else {
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*http.Response)
+		}
+	}
+
+	var r2 error
+	if rf, ok := ret.Get(2).(func(context.Context) error); ok {
+		r2 = rf(_a0)
+	} else {
+		r2 = ret.Error(2)
+	}
+
+	return r0, r1, r2
+}
+
+// UpdateServiceSimpleUpdate provides a mock function with given fields: _a0, _a1
+func (_m *RedfishAPI) UpdateServiceSimpleUpdate(_a0 context.Context, _a1 client.SimpleUpdateRequestBody) (client.RedfishError, *http.Response, error) {
+	ret := _m.Called(_a0, _a1)
+
+	var r0 client.RedfishError
+	if rf, ok := ret.Get(0).(func(context.Context, client.SimpleUpdateRequestBody) client.RedfishError); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		r0 = ret.Get(0).(client.RedfishError)
+	}
+
+	var r1 *http.Response
+	if rf, ok := ret.Get(1).(func(context.Context, client.SimpleUpdateRequestBody) *http.Response); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*http.Response)
+		}
+	}
+
+	var r2 error
+	if rf, ok := ret.Get(2).(func(context.Context, client.SimpleUpdateRequestBody) error); ok {
+		r2 = rf(_a0, _a1)
 	} else {
 		r2 = ret.Error(2)
 	}

@@ -8,6 +8,7 @@
  */
 
 package client
+// IndicatorLed the model 'IndicatorLed'
 type IndicatorLed string
 
 // List of IndicatorLED
