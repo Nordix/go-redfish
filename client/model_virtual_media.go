@@ -8,8 +8,7 @@
  */
 
 package client
-
-// Redfish virtual media resource for manager.
+// VirtualMedia Redfish virtual media resource for manager.
 type VirtualMedia struct {
 	// The name of the resource.
 	Id string `json:"Id,omitempty"`

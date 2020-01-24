@@ -8,7 +8,7 @@
  */
 
 package client
-
+// VirtualMediaActions struct for VirtualMediaActions
 type VirtualMediaActions struct {
 	VirtualMediaEjectMedia VirtualMediaActionsVirtualMediaEjectMedia `json:"#VirtualMedia.EjectMedia,omitempty"`
 	VirtualMediaInsertMedia VirtualMediaActionsVirtualMediaEjectMedia `json:"#VirtualMedia.InsertMedia,omitempty"`

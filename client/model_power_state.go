@@ -8,6 +8,7 @@
  */
 
 package client
+// PowerState the model 'PowerState'
 type PowerState string
 
 // List of PowerState

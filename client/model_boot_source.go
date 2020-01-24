@@ -8,6 +8,7 @@
  */
 
 package client
+// BootSource the model 'BootSource'
 type BootSource string
 
 // List of BootSource

@@ -8,7 +8,7 @@
  */
 
 package client
-
+// ManagerLinks struct for ManagerLinks
 type ManagerLinks struct {
 	ManagerForServers []IdRef `json:"ManagerForServers,omitempty"`
 	ManagerForChassis []IdRef `json:"ManagerForChassis,omitempty"`

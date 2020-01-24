@@ -8,9 +8,8 @@
  */
 
 package client
-// ComputerSystemReset struct for ComputerSystemReset
-type ComputerSystemReset struct {
+// VirtualMediaActionsVirtualMediaEjectMedia struct for VirtualMediaActionsVirtualMediaEjectMedia
+type VirtualMediaActionsVirtualMediaEjectMedia struct {
 	// The unique identifier for a resource.
 	Target string `json:"target,omitempty"`
-	ResetTypeRedfishAllowableValues []ResetType `json:"ResetType@Redfish.AllowableValues,omitempty"`
 }

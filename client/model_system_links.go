@@ -8,7 +8,7 @@
  */
 
 package client
-
+// SystemLinks struct for SystemLinks
 type SystemLinks struct {
 	Chassis []IdRef `json:"Chassis,omitempty"`
 	ManagedBy []IdRef `json:"ManagedBy,omitempty"`

@@ -8,8 +8,7 @@
  */
 
 package client
-
-// A reference to a resource.
+// IdRef A reference to a resource.
 type IdRef struct {
 	// The unique identifier for a resource.
 	OdataId string `json:"@odata.id,omitempty"`

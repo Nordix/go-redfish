@@ -8,8 +8,7 @@
  */
 
 package client
-
-// Redfish manager resource.
+// Manager Redfish manager resource.
 type Manager struct {
 	// The name of the resource.
 	Id string `json:"Id,omitempty"`

@@ -8,6 +8,7 @@
  */
 
 package client
+// Health the model 'Health'
 type Health string
 
 // List of Health

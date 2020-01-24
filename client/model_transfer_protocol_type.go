@@ -8,6 +8,7 @@
  */
 
 package client
+// TransferProtocolType the model 'TransferProtocolType'
 type TransferProtocolType string
 
 // List of TransferProtocolType

@@ -8,6 +8,7 @@
  */
 
 package client
+// BootSourceOverrideEnabled the model 'BootSourceOverrideEnabled'
 type BootSourceOverrideEnabled string
 
 // List of BootSourceOverrideEnabled

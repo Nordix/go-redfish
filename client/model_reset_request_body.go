@@ -8,7 +8,7 @@
  */
 
 package client
-
+// ResetRequestBody struct for ResetRequestBody
 type ResetRequestBody struct {
 	ResetType ResetType `json:"ResetType,omitempty"`
 }

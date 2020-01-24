@@ -8,8 +8,7 @@
  */
 
 package client
-
-// Contains an error payload from a Redfish Service.
+// RedfishError Contains an error payload from a Redfish Service.
 type RedfishError struct {
 	Error RedfishErrorError `json:"error"`
 }

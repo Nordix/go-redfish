@@ -8,8 +8,10 @@
  */
 
 package client
-
-type VirtualMediaActionsVirtualMediaEjectMedia struct {
-	// The unique identifier for a resource.
-	Target string `json:"target,omitempty"`
+import (
+	"os"
+)
+// InlineObject struct for InlineObject
+type InlineObject struct {
+	SoftwareImage *os.File `json:"softwareImage,omitempty"`
 }

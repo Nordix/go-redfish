@@ -8,6 +8,7 @@
  */
 
 package client
+// State the model 'State'
 type State string
 
 // List of State

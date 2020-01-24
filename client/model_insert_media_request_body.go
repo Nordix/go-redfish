@@ -8,7 +8,7 @@
  */
 
 package client
-
+// InsertMediaRequestBody struct for InsertMediaRequestBody
 type InsertMediaRequestBody struct {
 	Image string `json:"Image"`
 	Inserted bool `json:"Inserted,omitempty"`

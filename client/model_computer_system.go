@@ -8,8 +8,7 @@
  */
 
 package client
-
-// Root redfish path.
+// ComputerSystem Root redfish path.
 type ComputerSystem struct {
 	// The name of the resource.
 	Id string `json:"Id,omitempty"`
